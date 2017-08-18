@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mmall.dao.FileInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mmall.pojo.FileInfo" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="fname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="fsize" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ext" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="key" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="mimeType" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="saveType" jdbcType="TINYINT" javaType="java.lang.Integer" />
+      <arg column="url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, fname, fsize, ext, `key`, mimeType, saveType, url, update_time, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from mmall_file_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from mmall_file_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mmall.pojo.FileInfo" >
+    insert into mmall_file_info (id, fname, fsize, 
+      ext, `key`, mimeType,
+      saveType, url, update_time, 
+      create_time)
+    values (#{id,jdbcType=BIGINT}, #{fname,jdbcType=VARCHAR}, #{fsize,jdbcType=VARCHAR}, 
+      #{ext,jdbcType=VARCHAR}, #{key,jdbcType=VARCHAR}, #{mimetype,jdbcType=VARCHAR}, 
+      #{savetype,jdbcType=TINYINT}, #{url,jdbcType=VARCHAR},now(),
+      now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.mmall.pojo.FileInfo" >
+    insert into mmall_file_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="fname != null" >
+        fname,
+      </if>
+      <if test="fsize != null" >
+        fsize,
+      </if>
+      <if test="ext != null" >
+        ext,
+      </if>
+      <if test="key != null" >
+        key,
+      </if>
+      <if test="mimetype != null" >
+        mimeType,
+      </if>
+      <if test="savetype != null" >
+        saveType,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="fname != null" >
+        #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="fsize != null" >
+        #{fsize,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null" >
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null" >
+        #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="mimetype != null" >
+        #{mimetype,jdbcType=VARCHAR},
+      </if>
+      <if test="savetype != null" >
+        #{savetype,jdbcType=TINYINT},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        now(),
+      </if>
+      <if test="createTime != null" >
+       now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmall.pojo.FileInfo" >
+    update mmall_file_info
+    <set >
+      <if test="fname != null" >
+        fname = #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="fsize != null" >
+        fsize = #{fsize,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null" >
+        ext = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null" >
+        key = #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="mimetype != null" >
+        mimeType = #{mimetype,jdbcType=VARCHAR},
+      </if>
+      <if test="savetype != null" >
+        saveType = #{savetype,jdbcType=TINYINT},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = now(),
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.FileInfo" >
+    update mmall_file_info
+    set fname = #{fname,jdbcType=VARCHAR},
+      fsize = #{fsize,jdbcType=VARCHAR},
+      ext = #{ext,jdbcType=VARCHAR},
+      `key` = #{key,jdbcType=VARCHAR},
+      mimeType = #{mimetype,jdbcType=VARCHAR},
+      saveType = #{savetype,jdbcType=TINYINT},
+      url = #{url,jdbcType=VARCHAR},
+      update_time = now(),
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
