@@ -30,6 +30,7 @@ public class GitHubWebHookController {
                 public void run() {
                     String absFilePath = PropertiesUtil.getProperty("githubshell","/alidata/repository/mmall/deploy.sh");
                     try {
+                        System.out.println("run ssh");
                         Process exec = Runtime.getRuntime().exec("sh "+absFilePath);
                     } catch (IOException e) {
                         e.printStackTrace();
