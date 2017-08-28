@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mmall.dao.TemplateMapper" >
+  <resultMap id="BaseResultMap" type="com.mmall.pojo.Template" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="siteurl" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sitename" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="disabled" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="interval" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mmall.pojo.TemplateWithBLOBs" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="siteurl" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sitename" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="disabled" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="interval" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="har" jdbcType="LONGVARBINARY" javaType="_byte[]" />
+      <arg column="variables" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userid, siteurl, sitename, disabled, `interval`
+  </sql>
+  <sql id="Blob_Column_List" >
+    har, `variables`
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sign_tpl
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByUserId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sign_tpl
+    where id = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sign_tpl
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mmall.pojo.TemplateWithBLOBs" >
+    insert into sign_tpl (id, userid, siteurl, 
+      sitename, disabled, interval, 
+      har, variables)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{siteurl,jdbcType=VARCHAR}, 
+      #{sitename,jdbcType=VARCHAR}, #{disabled,jdbcType=INTEGER}, #{interval,jdbcType=INTEGER}, 
+      #{har,jdbcType=LONGVARBINARY}, #{variables,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mmall.pojo.TemplateWithBLOBs" >
+    insert into sign_tpl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="siteurl != null" >
+        siteurl,
+      </if>
+      <if test="sitename != null" >
+        sitename,
+      </if>
+      <if test="disabled != null" >
+        disabled,
+      </if>
+      <if test="interval != null" >
+        interval,
+      </if>
+      <if test="har != null" >
+        har,
+      </if>
+      <if test="variables != null" >
+        variables,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="siteurl != null" >
+        #{siteurl,jdbcType=VARCHAR},
+      </if>
+      <if test="sitename != null" >
+        #{sitename,jdbcType=VARCHAR},
+      </if>
+      <if test="disabled != null" >
+        #{disabled,jdbcType=INTEGER},
+      </if>
+      <if test="interval != null" >
+        #{interval,jdbcType=INTEGER},
+      </if>
+      <if test="har != null" >
+        #{har,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="variables != null" >
+        #{variables,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmall.pojo.TemplateWithBLOBs" >
+    update sign_tpl
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="siteurl != null" >
+        siteurl = #{siteurl,jdbcType=VARCHAR},
+      </if>
+      <if test="sitename != null" >
+        sitename = #{sitename,jdbcType=VARCHAR},
+      </if>
+      <if test="disabled != null" >
+        disabled = #{disabled,jdbcType=INTEGER},
+      </if>
+      <if test="interval != null" >
+        interval = #{interval,jdbcType=INTEGER},
+      </if>
+      <if test="har != null" >
+        har = #{har,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="variables != null" >
+        variables = #{variables,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mmall.pojo.TemplateWithBLOBs" >
+    update sign_tpl
+    set userid = #{userid,jdbcType=INTEGER},
+      siteurl = #{siteurl,jdbcType=VARCHAR},
+      sitename = #{sitename,jdbcType=VARCHAR},
+      disabled = #{disabled,jdbcType=INTEGER},
+      interval = #{interval,jdbcType=INTEGER},
+      har = #{har,jdbcType=LONGVARBINARY},
+      variables = #{variables,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.Template" >
+    update sign_tpl
+    set userid = #{userid,jdbcType=INTEGER},
+      siteurl = #{siteurl,jdbcType=VARCHAR},
+      sitename = #{sitename,jdbcType=VARCHAR},
+      disabled = #{disabled,jdbcType=INTEGER},
+      interval = #{interval,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
