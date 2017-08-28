@@ -82,8 +82,14 @@
         <!--</table>-->
         <!--<table tableName="mmall_user" domainObjectName="User"o enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
 
-        <table tableName="mmall_file_info" domainObjectName="FileInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <!--<table tableName="mmall_file_info" domainObjectName="FileInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
 
+
+        <table tableName="sign_task" domainObjectName="SignTask" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+
+        <table tableName="sign_tpl" domainObjectName="Template" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
 
         <!-- geelynote mybatis插件的搭建 -->
     </context>

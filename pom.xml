@@ -258,7 +258,12 @@
       <version>2.8.6</version>
     </dependency>
 
-
+    <!-- har -->
+    <dependency>
+      <groupId>de.sstoehr</groupId>
+      <artifactId>har-reader</artifactId>
+      <version>2.0.1</version>
+    </dependency>
 
     <!-- 七牛官方SDK -->
     <dependency>
