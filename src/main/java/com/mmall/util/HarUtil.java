@@ -4,6 +4,7 @@ import de.sstoehr.harreader.HarReader;
 import de.sstoehr.harreader.HarReaderException;
 import de.sstoehr.harreader.model.*;
 import okhttp3.*;
+import okio.BufferedSink;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,6 +35,9 @@ public class HarUtil {
             HttpMethod method = request.getMethod();
 
             for(HarHeader header :request.getHeaders()){
+                if(header.getName() == "Accept-Encoding"){
+                    continue;
+                }
                 builder.addHeader(header.getName(), header.getValue());
             }
 
@@ -42,8 +46,12 @@ public class HarUtil {
                 builder.get();
             }else if(method == HttpMethod.POST){
                 // RequestBody body = new RequestBody().
-                RequestBody body = RequestBody.create(MediaType.parse(request.getPostData().getMimeType()), request.getPostData().getText());
-                builder.post(body);
+                if(request.getPostData() !=null && request.getPostData().getText() != null){
+                    RequestBody body = RequestBody.create(MediaType.parse(request.getPostData().getMimeType()), request.getPostData().getText());
+                    builder.post(body);
+                }else{
+                    builder.post(RequestBody.create(JSON,""));
+                }
             }
             Request requestBuild  =  builder.build();
             Response response = client.newCall(requestBuild).execute();

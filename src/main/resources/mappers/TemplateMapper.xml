@@ -44,7 +44,7 @@
     ,
     <include refid="Blob_Column_List" />
     from sign_tpl
-    where id = #{userid,jdbcType=INTEGER}
+    where userid = #{userid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from sign_tpl
