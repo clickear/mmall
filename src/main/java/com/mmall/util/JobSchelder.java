@@ -22,7 +22,7 @@ public class JobSchelder {
     @Autowired
     private ISignService iSignService;
 
-    @Scheduled(cron = "0 0 0,6,12,18 * * ? ")
+    @Scheduled(cron = "0 0 0/6 * * *")
     public void job1() {
 
         List<TemplateWithBLOBs> tempList = iSignService.selectByUserId(1);
