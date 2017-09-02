@@ -16,17 +16,13 @@ import java.util.List;
  * Created by Administrator on 2017/8/28.
  */
 
-@Component("taskJob")
-public class JobSchelder {
-
+@Component("signJob")
+public class SignJob {
     @Autowired
     private ISignService iSignService;
 
-    @Scheduled(cron = "0 0 0/6 * * *")
-    public void job1() {
-
+    public void excute() {
         List<TemplateWithBLOBs> tempList = iSignService.selectByUserId(1);
-
         for(TemplateWithBLOBs tempObject:tempList){
             try {
                 String result = HarUtil.request(new String(tempObject.getHar(),"UTF-8"));
@@ -37,7 +33,6 @@ public class JobSchelder {
                 signLog.setTplid(tempObject.getId());
                 signLog.setCreatetime(new Date());
                 iSignService.insertSignLog(signLog);
-//                System.out.printf("result:"+result);
             } catch (IOException e) {
                 e.printStackTrace();
             }catch (Exception ex){

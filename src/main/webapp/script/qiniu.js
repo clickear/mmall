@@ -48,7 +48,7 @@
         return null;
     }
 
-    // if current browser is not support localStorage
+    // if current browser is not com.mmall.support localStorage
     // use cookie to make a polyfill
     if (!window.localStorage) {
         window.localStorage = {
@@ -649,7 +649,7 @@
                 //if (ie && ie < 9 && op.chunk_size && op.runtimes.indexOf('flash') >= 0) {
                 if (ie && ie < 9 && op.chunk_size && op.runtimes.indexOf('flash') >= 0) {
                     //  link: http://www.plupload.com/docs/Frequently-Asked-Questions#when-to-use-chunking-and-when-not
-                    //  when plupload chunk_size setting is't null ,it cause bug in ie8/9  which runs  flash runtimes (not support html5) .
+                    //  when plupload chunk_size setting is't null ,it cause bug in ie8/9  which runs  flash runtimes (not com.mmall.support html5) .
                     op.chunk_size = 0;
                 } else if (isSpecialSafari) {
                     // win7 safari / iOS7 safari have bug when in chunk upload mode
@@ -711,7 +711,7 @@
             var getUpHosts = function (uptoken) {
                 var putPolicy = getPutPolicy(uptoken);
                 // var uphosts_url = "//uc.qbox.me/v1/query?ak="+ak+"&bucket="+putPolicy.scope;
-                // IE9 does not support protocol relative url
+                // IE9 does not com.mmall.support protocol relative url
                 var uphosts_url = window.location.protocol + "//uc.qbox.me/v1/query?ak=" + putPolicy.ak + "&bucket=" + putPolicy.bucket;
                 logger.debug("putPolicy: ", putPolicy);
                 logger.debug("get uphosts from: ", uphosts_url);
@@ -1093,7 +1093,7 @@
                 logger.debug("uploader.runtime: ", uploader.runtime);
                 logger.debug("chunk_size: ", chunk_size);
 
-                // TODO: flash support chunk upload
+                // TODO: flash com.mmall.support chunk upload
                 if ((uploader.runtime === 'html5' || uploader.runtime === 'flash') && chunk_size) {
                     if (file.size < chunk_size || is_android_weixin_or_qq()) {
                         logger.debug("directUpload because file.size < chunk_size || is_android_weixin_or_qq()");
@@ -1158,7 +1158,7 @@
                             multipart_params_obj.accept = 'text/plain; charset=utf-8';
                             logger.debug("add accept text/plain in multipart params");
                         }
-                        // TODO: to support bput
+                        // TODO: to com.mmall.support bput
                         // http://developer.qiniu.com/docs/v6/api/reference/up/bput.html
                         up.setOption({
                             'url': qiniuUploadUrl + '/mkblk/' + blockSize,
