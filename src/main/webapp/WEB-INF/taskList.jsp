@@ -194,7 +194,7 @@
                 async : false,
                 dataType : "JSON",
                 cache : false,
-                url : "${basePath}task/add",
+                url : "/task/add",
                 data : $("#addForm").serialize(),
                 success : function(data) {
                     hideWaitMsg();
@@ -214,7 +214,7 @@
             async : false,
             dataType : "JSON",
             cache : false,
-            url : "${basePath}task/changeJobStatus",
+            url : "/task/changeJobStatus",
             data : {
                 jobId : jobId,
                 cmd : cmd
@@ -238,7 +238,7 @@
                 async : false,
                 dataType : "JSON",
                 cache : false,
-                url : "${basePath}task/updateCron",
+                url : "/task/updateCron",
                 data : {
                     jobId : jobId,
                     cron : cron
