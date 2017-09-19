@@ -5,11 +5,14 @@
 
     <bean id="mailSender"
               class="org.springframework.mail.javamail.JavaMailSenderImpl">
-            <property name="host">
-                <value>${mail.host}</value>
-            </property>
+            <property name="host"><value>${mail.host}</value></property>
+            <property name="port"><value>${mail.port}</value></property>
             <property name="javaMailProperties">
                 <props>
+                    <!-- 如果是网易邮箱， mail.smtp.starttls.enable 设置为 false-->
+                    <prop key="mail.smtp.starttls.enable">false</prop>
+                    <prop key="mail.smtp.quitwait">false</prop>
+                    <prop key="mail.smtp.socketFactory.class">${mail.smtp.socketFactory.class}</prop>
                     <prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
                     <prop key="mail.smtp.timeout">${mail.smtp.timeout}</prop>
                 </props>
