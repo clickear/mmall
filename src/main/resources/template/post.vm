@@ -1,0 +1,82 @@
+<div id="postcardarea" style="margin-top: 5px; cursor: default;"><!-- 明信片start -->
+    <div id="layerPhoto" class="defaultsize" unselectable="on"
+         style="margin: 46px 0px 0px 40px; width: 185px; height: 295px; color: rgb(0, 0, 0);"><img unselectable="on"
+                                                                                                   style="margin: -14.5px 0px 0px -134px; width: 453px; height: 324px;"
+                                                                                                   src="https://rescdn.qqmail.com/zh_CN/htmledition/images/postcard/photo/022.jpg">
+        <div id="loadPhoto" unselectable="on" style="visibility: hidden;">
+            <div class="mask"></div>
+            <table class="loadingcontainer">
+                <tbody>
+                <tr>
+                    <td align="center">
+                        <div><img unselectable="on"
+                                  src="https://rescdn.qqmail.com/zh_CN/htmledition/images/webp/ico_loading21e9c5d.gif">
+                        </div>
+                        <div class="loadtext">图片加载中</div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="layerStamp" unselectable="on"
+         style="margin: 20px 0px 0px 450px; width: 78px; height: 88px; color: rgb(0, 0, 0); background: url(&quot;https://rescdn.qqmail.com/zh_CN/htmledition/images/postcard/stamp/keep_08.png&quot;) no-repeat;"></div>
+    <div id="layerPostmark" unselectable="on"
+         style="margin: 28px 0px 0px 422px; width: 83px; height: 82px; color: rgb(0, 0, 0); background: url(&quot;https://rescdn.qqmail.com/zh_CN/htmledition/images/postcard/postmark/postmark_03.png&quot;) no-repeat;"></div>
+    <textarea id="layerText"
+              style="margin: 107px 0px 0px 273px; width: 233px; height: 203px; color: rgb(255, 255, 255); font-size: 16px;"
+              hascontent="false" class="contentext opa50"></textarea>
+    <div class="countTxt" style="position: absolute; left: 434px; top: 514px; color: rgb(255, 255, 255);" id="wordtext">
+        还能输入<em id="wordcnt">80</em>字
+    </div>
+    <div id="layerMover" style="visibility:hidden;" unselectable="on"></div><!-- range start -->
+    <div id="rangePhoto" class="flash" style="visibility:hidden;" unselectable="on"></div>
+    <div id="rangeStamp" class="flash"
+         style="visibility: hidden; cursor: pointer; width: 78px; height: 88px; margin-left: 440px; margin-top: 30px;"
+         title="点击更换邮票" unselectable="on"></div>
+    <div id="rangePostmark" class="flash"
+         style="visibility: hidden; cursor: pointer; width: 83px; height: 82px; margin-left: 390px; margin-top: 39px;"
+         title="点击更换邮戳" unselectable="on"></div>
+    <div id="rangeText" class="flash" style="visibility:hidden;" unselectable="on"></div><!-- range end -->
+    <!-- tool start -->
+    <div id="toolPhoto" class="tool" style="visibility:hidden;" unselectable="on" config="limitwidth:160px;"
+         onmousedown="return false;"><!--div class="base" unselectable="on"></div-->
+        <div id="toolPhotoZoomBase" class="zoom_base mytool" style="visibility:hidden;" unselectable="on"></div>
+        <div id="toolPhotoArrowTop" class="arrow_top" unselectable="on">
+            <div unselectable="on"></div>
+        </div>
+        <div id="toolPhotoArrowLeft" class="arrow_left" unselectable="on">
+            <div unselectable="on"></div>
+        </div>
+        <div id="toolPhotoArrowRight" class="arrow_right" unselectable="on">
+            <div unselectable="on"></div>
+        </div>
+        <div id="toolPhotoArrowBottom" class="arrow_bottom" unselectable="on">
+            <div unselectable="on"></div>
+        </div>
+        <div id="toolPhotoZoomIn" class="zoom_in" title="放大" unselectable="on">
+            <div unselectable="on"></div>
+        </div>
+        <div id="toolPhotoZoomOut" class="zoom_out" title="缩少" unselectable="on">
+            <div unselectable="on"></div>
+        </div>
+        <div id="toolPhotoZoomSlot" class="zoom_slot" unselectable="on"></div>
+        <div id="toolPhotoZoomBar" class="zoom_bar" unselectable="on" style="margin-top: 59px;">
+            <div class="mytool button_normal" unselectable="on"></div>
+        </div>
+        <div id="toolPhotoZoomMask" class="zoom_mask" unselectable="on" style="visibility:hidden;"></div>
+        <div class="mytool" unselectable="on"></div>
+    </div>
+    <div id="toolText" class="tool" style="visibility:hidden;" config="offsettop:-34px;offsetleft:-8px;"
+         unselectable="on" onmousedown="return false;">
+        <div id="toolTextColor" unselectable="on" title="字体颜色">
+            <div unselectable="on"></div>
+        </div>
+        <div id="toolTextSize" unselectable="on" title="字体大小">
+            <div unselectable="on"></div>
+        </div>
+        <div class="mytool" unselectable="on"></div>
+    </div><!-- tool end -->
+    <div id="layerMask" class="mask defaultsize" unselectable="on"
+         style="margin: 0px; width: 540px; height: 360px; color: rgb(0, 0, 0); background: url(&quot;https://rescdn.qqmail.com/zh_CN/htmledition/images/postcard/tmp/wall/mask.png&quot;) no-repeat;"></div>
+    <!-- 明信片end --></div>
