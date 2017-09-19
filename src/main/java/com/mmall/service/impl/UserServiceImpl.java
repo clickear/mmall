@@ -5,6 +5,7 @@ import com.mmall.common.ServerResponse;
 import com.mmall.common.TokenCache;
 import com.mmall.dao.UserMapper;
 import com.mmall.pojo.User;
+import com.mmall.service.IUserAlertService;
 import com.mmall.service.IUserService;
 import com.mmall.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private IUserAlertService iUserAlertService;
 
     @Override
     public ServerResponse<User> login(String username, String password) {
@@ -40,8 +43,6 @@ public class UserServiceImpl implements IUserService {
         return ServerResponse.createBySuccess("登录成功",user);
     }
 
-
-
     public ServerResponse<String> register(User user){
         ServerResponse validResponse = this.checkValid(user.getUsername(),Const.USERNAME);
         if(!validResponse.isSuccess()){
@@ -58,6 +59,7 @@ public class UserServiceImpl implements IUserService {
         if(resultCount == 0){
             return ServerResponse.createByErrorMessage("注册失败");
         }
+        iUserAlertService.sendEmailToUserQueue(user);
         return ServerResponse.createBySuccessMessage("注册成功");
     }
 
