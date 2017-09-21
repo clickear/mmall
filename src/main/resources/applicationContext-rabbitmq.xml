@@ -41,7 +41,7 @@
     </direct-exchange>
 
     <!-- spring amqp默认的是jackson 的一个插件,目的将生产者生产的数据转换为json存入消息队列，由于fastjson的速度快于jackson,这里替换为fastjson的一个实现 -->
-    <beans:bean id="jsonMessageConverter"  class="org.springframework.amqp.support.converter.JsonMessageConverter"></beans:bean>
+    <beans:bean id="jsonMessageConverter"  class="org.springframework.amqp.support.converter.Jackson2JsonMessageConverter"></beans:bean>
 
     <!--3、配置RabbitTemplate发送消息-->
     <template id="rabbitTemplate"
