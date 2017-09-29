@@ -88,7 +88,10 @@
         <!--<table tableName="sign_task" domainObjectName="SignTask" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
         <!--</table>-->
 
-        <table tableName="sign_log" domainObjectName="SignLog" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        <!--<table tableName="sign_log" domainObjectName="SignLog" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <table tableName="music_song" domainObjectName="MusicSong" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
         </table>
 
         <!-- geelynote mybatis插件的搭建 -->

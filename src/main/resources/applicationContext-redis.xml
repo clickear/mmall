@@ -19,13 +19,19 @@
           p:port="${redis.port}"
           p:use-pool="true"/>
 
+    <bean id="iCache" class="com.mmall.common.ComCache">
+        <constructor-arg index="0" ref="redisTemplate"/>
+        <constructor-arg index="1" value="864000"/>
+    </bean>
+    
        <!-- redis template definition -->
     <bean id="redisTemplate"
           class="org.springframework.data.redis.core.RedisTemplate"
+          p:defaultSerializer-ref="genericJackson2JsonRedisSerializer"
+          p:valueSerializer-ref="genericJackson2JsonRedisSerializer"
           p:connection-factory-ref="jedisConnFactory"/>
 
-    <bean id="stringRedisTemplate"
-          class="org.springframework.data.redis.core.StringRedisTemplate"
-          p:connection-factory-ref="jedisConnFactory"/>
+    <bean id="genericJackson2JsonRedisSerializer"
+          class="org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer"/>
 
 </beans>

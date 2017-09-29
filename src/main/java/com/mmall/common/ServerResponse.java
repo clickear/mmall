@@ -1,5 +1,7 @@
 package com.mmall.common;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 
 
@@ -29,7 +31,12 @@ public class ServerResponse<T> implements Serializable {
         this.msg = msg;
     }
 
+    private ServerResponse(){
+
+    }
+
     //使之不在json序列化结果当中
+    @JsonIgnore
     public boolean isSuccess(){
         return this.status == ResponseCode.SUCCESS.getCode();
     }
