@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.mmall.pojo.MusicSong;
 import com.mmall.pojo.music.xm.XiamiDatas;
 import com.mmall.pojo.music.xm.XiamiIds;
-import com.mmall.service.IMusic;
+import com.mmall.service.IMusicSearchService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by qtfreet on 2017/2/8.
  */
-public class XmMusic implements IMusic {
+public class XmMusicSearchService implements IMusicSearchService {
     //虾米不支持mv和无损解析
     private static List<MusicSong> search(String key, int page, int size) throws Exception {
         String url = "http://api.xiami.com/web?v=2.0&app_key=1&key=" + key + "&page=" + page + "&limit=" + size + "&r=search/songs";

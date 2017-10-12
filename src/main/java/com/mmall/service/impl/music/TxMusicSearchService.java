@@ -6,7 +6,7 @@ import com.mmall.pojo.music.tx.TencentDatas;
 import com.mmall.pojo.music.tx.TencentGetKey;
 import com.mmall.pojo.music.tx.TencentMvData;
 import com.mmall.pojo.music.tx.TencentMvKey;
-import com.mmall.service.IMusic;
+import com.mmall.service.IMusicSearchService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ import java.util.Random;
 /**
  * Created by qtfreet on 2017/2/6.
  */
-public class TxMusic implements IMusic {
+public class TxMusicSearchService implements IMusicSearchService {
     //腾讯支持无损和mv解析
     private static List<MusicSong> search(String key, int page, int size) throws Exception {
         String url = "http://soso.music.qq.com/fcgi-bin/search_cp?aggr=0&catZhida=0&lossless=1&sem=1&w=" + key + "&n=" + size + "&t=0&p=" + page + "&remoteplace=sizer.yqqlist.song&g_tk=5381&loginUin=0&hostUin=0&format=jsonp&inCharset=GB2312&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0";

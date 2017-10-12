@@ -1,9 +1,12 @@
-package com.mmall.dao;
+package com.mmall.service;
 
 import com.mmall.pojo.MusicSong;
-import org.apache.ibatis.annotations.Param;
 
-public interface MusicSongMapper {
+/**
+ * Created by Administrator on 2017/10/12.
+ */
+public interface IMusicService {
+
     int deleteByPrimaryKey(Long id);
 
     int insert(MusicSong record);
@@ -16,6 +19,5 @@ public interface MusicSongMapper {
 
     int updateByPrimaryKey(MusicSong record);
 
-    MusicSong selectByTypeAndExtractId(@Param(value="type")String type,@Param(value="extractId") String extractId);
-
+    MusicSong selectByTypeAndExtractId(String type, String extractId);
 }

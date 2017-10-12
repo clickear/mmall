@@ -1,6 +1,12 @@
 package com.mmall.pojo;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+
+@Document(indexName = "music_index",type="music")
 public class MusicSong {
+
+    @Id
     private Long id;
 
     private String type;

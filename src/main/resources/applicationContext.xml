@@ -38,5 +38,6 @@
     <import resource="applicationContext-mail.xml" />
     <import resource="applicationContext-rabbitmq.xml"/>
     <import resource="applicationContext-redis.xml"/>
+    <import resource="applicationContext-elasticsearch.xml"/>
 
 </beans>

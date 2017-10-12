@@ -1,6 +1,7 @@
 package com.mmall.service.impl.music;
 
 import okhttp3.*;
+import org.apache.commons.net.util.Base64;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
@@ -8,7 +9,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.net.URLEncoder;
-import java.util.Base64;
+
 import java.util.HashMap;
 import java.util.Set;
 
@@ -140,7 +141,7 @@ public class NetUtil {
 
             byte[] encrypted = cipher.doFinal(text.getBytes());
 
-            return Base64.getEncoder().encodeToString(encrypted);
+            return Base64.encodeBase64String(encrypted);
         } catch (Exception ex) {
             //ignore
             return null;

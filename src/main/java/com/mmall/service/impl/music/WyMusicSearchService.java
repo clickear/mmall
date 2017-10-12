@@ -3,7 +3,7 @@ package com.mmall.service.impl.music;
 import com.alibaba.fastjson.JSON;
 import com.mmall.pojo.MusicSong;
 import com.mmall.pojo.music.wy.*;
-import com.mmall.service.IMusic;
+import com.mmall.service.IMusicSearchService;
 import sun.misc.BASE64Encoder;
 
 import java.security.MessageDigest;
@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by qtfreet00 on 2017/2/3.
  */
-public class WyMusic implements IMusic {
+public class WyMusicSearchService implements IMusicSearchService {
 
     //网易不支持无损解析，支持下架音乐
     private static List<MusicSong> search(String key, int page, int size) {
