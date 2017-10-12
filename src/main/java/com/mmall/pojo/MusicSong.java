@@ -2,6 +2,8 @@ package com.mmall.pojo;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 @Document(indexName = "music_index",type="music")
 public class MusicSong {
@@ -13,10 +15,12 @@ public class MusicSong {
 
     private String songExtraId;
 
+    @Field(type = FieldType.String, searchAnalyzer = "ik_max_word", analyzer = "ik_max_word")
     private String songName;
 
     private String artistId;
 
+    @Field(type = FieldType.String, searchAnalyzer = "ik", analyzer = "ik")
     private String artistName;
 
     private String albumId;
