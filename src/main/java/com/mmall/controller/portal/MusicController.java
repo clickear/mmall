@@ -7,9 +7,7 @@ import com.mmall.service.IMusicService;
 import com.mmall.service.impl.music.MusicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,7 +23,7 @@ public class MusicController {
 
     @ResponseBody
     @RequestMapping(value = "serach.do", method = {RequestMethod.GET,RequestMethod.POST})
-    public List<MusicSong> searchSong(String musciType, String songName){
+    public List<MusicSong> searchSong(@RequestParam String musciType, @RequestParam String songName){
 
         List<MusicSong> wy = MusicService.GetMusic(musciType).SongSearch(songName, 1, 15);
 
