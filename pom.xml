@@ -13,6 +13,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 
+    <jackson>2.8.9</jackson>
     <org.springframework.version>4.3.11.RELEASE</org.springframework.version>
     <org.mybatis.version>3.4.1</org.mybatis.version>
     <org.mybatis.spring.version>1.3.0</org.mybatis.spring.version>
@@ -129,18 +130,40 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
-      <version>2.8.9</version>
+      <version>${jackson}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-annotations</artifactId>
-      <version>2.8.9</version>
+      <version>${jackson}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>2.8.9</version>
+      <version>${jackson}</version>
     </dependency>
+
+  <dependency>
+    <groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-smile</artifactId>
+    <version>${jackson}</version>
+  </dependency>
+  <dependency>
+    <groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-yaml</artifactId>
+    <version>${jackson}</version>
+    <exclusions>
+      <exclusion>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+      </exclusion>
+    </exclusions>
+  </dependency>
+  <dependency>
+    <groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-cbor</artifactId>
+    <version>${jackson}</version>
+  </dependency>
 
 
     <dependency>
