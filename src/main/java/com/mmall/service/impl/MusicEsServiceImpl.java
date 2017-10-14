@@ -46,8 +46,8 @@ public class MusicEsServiceImpl implements IMusicEsService{
 
     @Override
     public List<MusicSong> findBySongName(String songName) {
-        SearchQuery searchQuery = getSongSearchQuery(DEFAULT_PAGE_NUMBER, PAGE_SIZE, songName);
-        return iMusicEsRepository.search(searchQuery).getContent();
+        return getSongSearchQuery(DEFAULT_PAGE_NUMBER, PAGE_SIZE, songName);
+//        return iMusicEsRepository.search(searchQuery).getContent();
     }
 
 
@@ -65,25 +65,27 @@ public class MusicEsServiceImpl implements IMusicEsService{
      * @param searchContent 搜索内容
      * @return
      */
-    private SearchQuery getSongSearchQuery(Integer pageNumber, Integer pageSize, String searchContent) {
+    private List<MusicSong> getSongSearchQuery(Integer pageNumber, Integer pageSize, String searchContent) {
         // 短语匹配到的搜索词，求和模式累加权重分
         // 权重分查询 https://www.elastic.co/guide/cn/elasticsearch/guide/current/function-score-query.html
         //   - 短语匹配 https://www.elastic.co/guide/cn/elasticsearch/guide/current/phrase-matching.html
         //   - 字段对应权重分设置，可以优化成 enum
         //   - 由于无相关性的分值默认为 1 ，设置权重分最小值为 10
-        FunctionScoreQueryBuilder functionScoreQueryBuilder = QueryBuilders.functionScoreQuery()
-                .add(QueryBuilders.matchPhrasePrefixQuery("songName", searchContent),
-                        ScoreFunctionBuilders.weightFactorFunction(1000))
-
-                .add(QueryBuilders.matchPhrasePrefixQuery("artistName", searchContent),
-                        ScoreFunctionBuilders.weightFactorFunction(500))
-                .scoreMode(SCORE_MODE_SUM).setMinScore(MIN_SCORE);
+//        FunctionScoreQueryBuilder functionScoreQueryBuilder = QueryBuilders.functionScoreQuery(QueryBuilders.matchAllQuery())
+//                .add(QueryBuilders.matchPhrasePrefixQuery("songName", searchContent),
+//                        ScoreFunctionBuilders.weightFactorFunction(1000))
+//
+//                .add(QueryBuilders.matchPhrasePrefixQuery("artistName", searchContent),
+//                        ScoreFunctionBuilders.weightFactorFunction(500))
+//                .scoreMode(SCORE_MODE_SUM).setMinScore(MIN_SCORE);
 
         // 分页参数
         Pageable pageable = new PageRequest(pageNumber, pageSize);
-        return new NativeSearchQueryBuilder()
-                .withPageable(pageable)
-                .withQuery(functionScoreQueryBuilder).build();
+        return iMusicEsRepository.search(QueryBuilders.matchPhrasePrefixQuery("songName",searchContent),pageable).getContent();
+//
+//        return new NativeSearchQueryBuilder()
+//                .withPageable(pageable)
+//                .withQuery(functionScoreQueryBuilder).build();
     }
 
 }

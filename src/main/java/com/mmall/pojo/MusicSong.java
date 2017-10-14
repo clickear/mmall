@@ -15,12 +15,12 @@ public class MusicSong {
 
     private String songExtraId;
 
-    @Field(type = FieldType.String, searchAnalyzer = "ik_max_word", analyzer = "ik_max_word")
+    @Field(type = FieldType.text, searchAnalyzer = "ik_max_word", analyzer = "ik_max_word")
     private String songName;
 
     private String artistId;
 
-    @Field(type = FieldType.String, searchAnalyzer = "ik", analyzer = "ik")
+    @Field(type = FieldType.text, searchAnalyzer = "ik", analyzer = "ik")
     private String artistName;
 
     private String albumId;
