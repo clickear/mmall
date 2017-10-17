@@ -1,13 +1,11 @@
 package com.mmall.util;
 
-import org.apache.velocity.app.VelocityEngine;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.ui.velocity.VelocityEngineFactoryBean;
-import org.springframework.ui.velocity.VelocityEngineUtils;
+
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -22,7 +20,6 @@ public class MailUtil {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
         //获取JavaMailSender bean
         JavaMailSenderImpl sender = (JavaMailSenderImpl) ctx.getBean("mailSender");
-        VelocityEngine velocityEngine = (VelocityEngine) ctx.getBean("velocityEngine");
 
         MimeMessage mailMessage = sender.createMimeMessage();
         //设置utf-8或GBK编码，否则邮件会有乱码
@@ -33,9 +30,7 @@ public class MailUtil {
             messageHelper.setSubject("测试邮件");//主题
             //邮件内容，注意加参数true
 
-            String text = VelocityEngineUtils.mergeTemplateIntoString(
-                    velocityEngine, "template/post.vm", "UTF-8", null);
-
+            String text = "";
             messageHelper.setText(text, true);
             //附件内容
 //            messageHelper.addInline("a", new File("E:/xiezi.jpg"));
