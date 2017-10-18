@@ -79,7 +79,7 @@ public class XmMusicSearchService implements IMusicSearchService {
             song.setArtistName(artistName);
             song.setAlbumId(ablum);
             song.setAlbumName(album);
-            song.setLength(length);
+            song.setSongLength(length);
             song.setLrcUrl(lyric);
             song.setPicUrl(picUrl);
             String location = trackListBean.getLocation();
@@ -93,7 +93,7 @@ public class XmMusicSearchService implements IMusicSearchService {
                 song.setSqUrl(Util.getXiaMp3Url(hqUrl));
                 song.setBitRate("320K");
             }
-            song.setType("xm");
+            song.setSongType("xm");
             return song;
         } catch (Exception ignored) {
 

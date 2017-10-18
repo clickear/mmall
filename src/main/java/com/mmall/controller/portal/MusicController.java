@@ -1,7 +1,6 @@
 package com.mmall.controller.portal;
 
 import com.mmall.pojo.MusicSong;
-import com.mmall.pojo.music.SearchResult;
 import com.mmall.service.IMusicEsService;
 import com.mmall.service.IMusicService;
 import com.mmall.service.impl.music.MusicService;
@@ -28,7 +27,7 @@ public class MusicController {
         List<MusicSong> wy = MusicService.GetMusic(musciType).SongSearch(songName, 1, 15);
 
         for(MusicSong musicSong : wy){
-            MusicSong result = iMusicService.selectByTypeAndExtractId(musicSong.getType(), musicSong.getSongExtraId());
+            MusicSong result = iMusicService.selectByTypeAndExtractId(musicSong.getSongType(), musicSong.getSongExtraId());
             if(result ==null){
                 long songId = iMusicService.insert(musicSong);
                 if(songId >0){
@@ -38,4 +37,8 @@ public class MusicController {
         }
         return wy;
     }
+
+
+
+
 }

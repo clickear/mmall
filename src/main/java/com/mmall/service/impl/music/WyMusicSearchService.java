@@ -75,7 +75,7 @@ public class WyMusicSearchService implements IMusicSearchService {
             String ArtistId = String.valueOf(ar.get(0).getId());
             String AlbumId = String.valueOf(songsBean.getAl().getId());
             String AlbumName = songsBean.getAl().getName();
-            MusicSong.setLength(Util.secTotime(songsBean.getDt() / 1000));
+            MusicSong.setSongLength(Util.secTotime(songsBean.getDt() / 1000));
             MusicSong.setArtistName(artistName);
             MusicSong.setArtistId(ArtistId);
             MusicSong.setSongExtraId(SongId);
@@ -89,7 +89,7 @@ public class WyMusicSearchService implements IMusicSearchService {
                 MusicSong.setMvHdUrl(GetMvUrl(MvId, "hd"));
                 MusicSong.setMvLdUrl(GetMvUrl(MvId, "ld"));
             }
-            MusicSong.setType("wy");
+            MusicSong.setSongType("wy");
             MusicSong.setPicUrl(GetPic(SongId));
             MusicSong.setLrcUrl(GetLrcUrl(SongId));
             int maxbr = songsBean.getPrivilege().getMaxbr();

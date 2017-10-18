@@ -16,6 +16,6 @@ public interface MusicSongMapper {
 
     int updateByPrimaryKey(MusicSong record);
 
-    MusicSong selectByTypeAndExtractId(@Param(value="type")String type,@Param(value="extractId") String extractId);
+    MusicSong selectByTypeAndExtractId(@Param(value="songType")String songType,@Param(value="extractId") String extractId);
 
 }

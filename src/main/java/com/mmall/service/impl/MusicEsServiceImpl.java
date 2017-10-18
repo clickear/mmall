@@ -79,6 +79,8 @@ public class MusicEsServiceImpl implements IMusicEsService{
 //                        ScoreFunctionBuilders.weightFactorFunction(500))
 //                .scoreMode(SCORE_MODE_SUM).setMinScore(MIN_SCORE);
 
+
+
         // 分页参数
         Pageable pageable = new PageRequest(pageNumber, pageSize);
         return iMusicEsRepository.search(QueryBuilders.matchPhrasePrefixQuery("songName",searchContent),pageable).getContent();

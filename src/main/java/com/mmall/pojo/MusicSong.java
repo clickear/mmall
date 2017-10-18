@@ -5,13 +5,15 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
+import java.util.Date;
+
 @Document(indexName = "music_index",type="music")
 public class MusicSong {
 
     @Id
     private Long id;
 
-    private String type;
+    private String songType;
 
     private String songExtraId;
 
@@ -20,7 +22,7 @@ public class MusicSong {
 
     private String artistId;
 
-    @Field(type = FieldType.text, searchAnalyzer = "ik", analyzer = "ik")
+    @Field(type = FieldType.text, searchAnalyzer = "ik_max_word", analyzer = "ik_max_word")
     private String artistName;
 
     private String albumId;
@@ -29,7 +31,7 @@ public class MusicSong {
 
     private String songLink;
 
-    private String length;
+    private String songLength;
 
     private String bitRate;
 
@@ -51,9 +53,14 @@ public class MusicSong {
 
     private String mvLdUrl;
 
-    public MusicSong(Long id, String type, String songExtraId, String songName, String artistId, String artistName, String albumId, String albumName, String songLink, String length, String bitRate, String flacUrl, String sqUrl, String hqUrl, String lqUrl, String picUrl, String lrcUrl, String mvId, String mvHdUrl, String mvLdUrl) {
+    private Date createTime;
+
+    private Date updateTime;
+
+
+    public MusicSong(Long id, String songType, String songExtraId, String songName, String artistId, String artistName, String albumId, String albumName, String songLink, String songLength, String bitRate, String flacUrl, String sqUrl, String hqUrl, String lqUrl, String picUrl, String lrcUrl, String mvId, String mvHdUrl, String mvLdUrl, Date createTime, Date updateTime) {
         this.id = id;
-        this.type = type;
+        this.songType = songType;
         this.songExtraId = songExtraId;
         this.songName = songName;
         this.artistId = artistId;
@@ -61,7 +68,7 @@ public class MusicSong {
         this.albumId = albumId;
         this.albumName = albumName;
         this.songLink = songLink;
-        this.length = length;
+        this.songLength = songLength;
         this.bitRate = bitRate;
         this.flacUrl = flacUrl;
         this.sqUrl = sqUrl;
@@ -72,6 +79,8 @@ public class MusicSong {
         this.mvId = mvId;
         this.mvHdUrl = mvHdUrl;
         this.mvLdUrl = mvLdUrl;
+        this.createTime = createTime;
+        this.updateTime = createTime;
     }
 
     public MusicSong() {
@@ -86,12 +95,12 @@ public class MusicSong {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getSongType() {
+        return songType;
     }
 
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
+    public void setSongType(String songType) {
+        this.songType = songType == null ? null : songType.trim();
     }
 
     public String getSongExtraId() {
@@ -150,12 +159,12 @@ public class MusicSong {
         this.songLink = songLink == null ? null : songLink.trim();
     }
 
-    public String getLength() {
-        return length;
+    public String getSongLength() {
+        return songLength;
     }
 
-    public void setLength(String length) {
-        this.length = length == null ? null : length.trim();
+    public void setSongLength(String length) {
+        this.songLength = length == null ? null : length.trim();
     }
 
     public String getBitRate() {
@@ -236,5 +245,21 @@ public class MusicSong {
 
     public void setMvLdUrl(String mvLdUrl) {
         this.mvLdUrl = mvLdUrl == null ? null : mvLdUrl.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }
