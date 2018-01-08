@@ -55,7 +55,7 @@ public class KgMusicSearchService implements IMusicSearchService {
             songResult.setArtistName(artistName);
             songResult.setSongExtraId(SongId);
             songResult.setSongName(SongName);
-            songResult.setLength(Util.secTotime(length));
+            songResult.setSongLength(Util.secTotime(length));
             if (!AlbumId.isEmpty() && Util.isNumber(AlbumId)) {
                 songResult.setPicUrl(GetUrl(AlbumId, "320", "jpg"));
             } else {
@@ -91,7 +91,7 @@ public class KgMusicSearchService implements IMusicSearchService {
             songResult.setAlbumId(AlbumId);
             songResult.setAlbumName(AlbumName);
 
-            songResult.setType("kg");
+            songResult.setSongType("kg");
 //            songResult.setPicUrl(songsBean.getPicUrl());
 //            GetUrl(SongId,"320","lrc");
 //            songResult.setLrcUrl(GetLrcUrl(SongId, SongName, artistName)); //暂不去拿歌曲，直接解析浪费性能

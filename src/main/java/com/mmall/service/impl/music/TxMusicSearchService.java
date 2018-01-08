@@ -108,9 +108,9 @@ public class TxMusicSearchService implements IMusicSearchService {
             if (!albummid.isEmpty() && albummid.length() > 2) {
                 MusicSong.setPicUrl("http://i.gtimg.cn/music/photo/mid_album_500/" + albummid.substring(albummid.length() - 2, albummid.length() - 1) + "/" + albummid.substring(albummid.length() - 1) + "/" + albummid + ".jpg");
             }
-            MusicSong.setLength(Util.secTotime(songsBean.getInterval()));
+            MusicSong.setSongLength(Util.secTotime(songsBean.getInterval()));
 
-            MusicSong.setType("qq");
+            MusicSong.setSongType("qq");
 //            MusicSong.setLrcUrl(GetLrcUrl(SongId, SongName, artistName)); //暂不去拿歌词，直接解析浪费性能
 
             list.add(MusicSong);

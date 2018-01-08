@@ -19,5 +19,5 @@ public interface IMusicService {
 
     int updateByPrimaryKey(MusicSong record);
 
-    MusicSong selectByTypeAndExtractId(String type, String extractId);
+    MusicSong selectByTypeAndExtractId(String songType, String extractId);
 }

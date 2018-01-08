@@ -4,7 +4,7 @@
 <resultMap id="BaseResultMap" type="com.mmall.pojo.MusicSong">
   <constructor>
     <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
-    <arg column="type" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <arg column="song_type" javaType="java.lang.String" jdbcType="VARCHAR" />
     <arg column="song_extra_id" javaType="java.lang.String" jdbcType="VARCHAR" />
     <arg column="song_name" javaType="java.lang.String" jdbcType="VARCHAR" />
     <arg column="artist_id" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
     <arg column="album_id" javaType="java.lang.String" jdbcType="VARCHAR" />
     <arg column="album_name" javaType="java.lang.String" jdbcType="VARCHAR" />
     <arg column="song_link" javaType="java.lang.String" jdbcType="VARCHAR" />
-    <arg column="length" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <arg column="song_length" javaType="java.lang.String" jdbcType="VARCHAR" />
     <arg column="bit_rate" javaType="java.lang.String" jdbcType="VARCHAR" />
     <arg column="flac_url" javaType="java.lang.String" jdbcType="VARCHAR" />
     <arg column="sq_url" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -23,12 +23,14 @@
     <arg column="mv_id" javaType="java.lang.String" jdbcType="VARCHAR" />
     <arg column="mv_hd_url" javaType="java.lang.String" jdbcType="VARCHAR" />
     <arg column="mv_ld_url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
   </constructor>
 </resultMap>
 <sql id="Base_Column_List">
-  id, type, song_extra_id, song_name, artist_id, artist_name, album_id, album_name,
-  song_link, length, bit_rate, flac_url, sq_url, hq_url, lq_url, pic_url, lrc_url,
-  mv_id, mv_hd_url, mv_ld_url
+  id, song_type, song_extra_id, song_name, artist_id, artist_name, album_id, album_name,
+  song_link, song_length, bit_rate, flac_url, sq_url, hq_url, lq_url, pic_url, lrc_url,
+  mv_id, mv_hd_url, mv_ld_url,create_time,update_time
 </sql>
 <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
   select
@@ -40,27 +42,27 @@
       select
       <include refid="Base_Column_List" />
       from music_song
-      where song_extra_id = #{extractId} and type = #{type} limit 0,1
+      where song_extra_id = #{extractId} and song_type = #{songType} limit 0,1
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
   delete from music_song
   where id = #{id,jdbcType=BIGINT}
 </delete>
 <insert id="insert" parameterType="com.mmall.pojo.MusicSong" useGeneratedKeys="true" keyProperty="id" >
-  insert into music_song (id, type, song_extra_id,
+  insert into music_song (id, song_type, song_extra_id,
   song_name, artist_id, artist_name,
   album_id, album_name, song_link,
-  length, bit_rate, flac_url,
+  song_length, bit_rate, flac_url,
   sq_url, hq_url, lq_url,
   pic_url, lrc_url, mv_id,
-  mv_hd_url, mv_ld_url)
-  values (#{id,jdbcType=BIGINT}, #{type,jdbcType=VARCHAR}, #{songExtraId,jdbcType=VARCHAR},
+  mv_hd_url, mv_ld_url,create_time, update_time)
+  values (#{id,jdbcType=BIGINT}, #{songType,jdbcType=VARCHAR}, #{songExtraId,jdbcType=VARCHAR},
   #{songName,jdbcType=VARCHAR}, #{artistId,jdbcType=VARCHAR}, #{artistName,jdbcType=VARCHAR},
   #{albumId,jdbcType=VARCHAR}, #{albumName,jdbcType=VARCHAR}, #{songLink,jdbcType=VARCHAR},
-  #{length,jdbcType=VARCHAR}, #{bitRate,jdbcType=VARCHAR}, #{flacUrl,jdbcType=VARCHAR},
+  #{songLength,jdbcType=VARCHAR}, #{bitRate,jdbcType=VARCHAR}, #{flacUrl,jdbcType=VARCHAR},
   #{sqUrl,jdbcType=VARCHAR}, #{hqUrl,jdbcType=VARCHAR}, #{lqUrl,jdbcType=VARCHAR},
   #{picUrl,jdbcType=VARCHAR}, #{lrcUrl,jdbcType=VARCHAR}, #{mvId,jdbcType=VARCHAR},
-  #{mvHdUrl,jdbcType=VARCHAR}, #{mvLdUrl,jdbcType=VARCHAR})
+  #{mvHdUrl,jdbcType=VARCHAR}, #{mvLdUrl,jdbcType=VARCHAR}, now(),now())
 </insert>
 <insert id="insertSelective" parameterType="com.mmall.pojo.MusicSong">
   insert into music_song
@@ -68,8 +70,8 @@
     <if test="id != null">
       id,
     </if>
-    <if test="type != null">
-      type,
+    <if test="songType != null">
+      song_type,
     </if>
     <if test="songExtraId != null">
       song_extra_id,
@@ -92,8 +94,8 @@
     <if test="songLink != null">
       song_link,
     </if>
-    <if test="length != null">
-      length,
+    <if test="songLength != null">
+      song_length,
     </if>
     <if test="bitRate != null">
       bit_rate,
@@ -125,13 +127,19 @@
     <if test="mvLdUrl != null">
       mv_ld_url,
     </if>
+    <if test="createTime != null" >
+      create_time,
+    </if>
+    <if test="updateTime != null" >
+      update_time,
+    </if>
   </trim>
   <trim prefix="values (" suffix=")" suffixOverrides=",">
     <if test="id != null">
       #{id,jdbcType=BIGINT},
     </if>
-    <if test="type != null">
-      #{type,jdbcType=VARCHAR},
+    <if test="songType != null">
+      #{songType,jdbcType=VARCHAR},
     </if>
     <if test="songExtraId != null">
       #{songExtraId,jdbcType=VARCHAR},
@@ -154,8 +162,8 @@
     <if test="songLink != null">
       #{songLink,jdbcType=VARCHAR},
     </if>
-    <if test="length != null">
-      #{length,jdbcType=VARCHAR},
+    <if test="songLength != null">
+      #{songLength,jdbcType=VARCHAR},
     </if>
     <if test="bitRate != null">
       #{bitRate,jdbcType=VARCHAR},
@@ -187,13 +195,19 @@
     <if test="mvLdUrl != null">
       #{mvLdUrl,jdbcType=VARCHAR},
     </if>
+    <if test="createTime != null" >
+      now(),
+    </if>
+    <if test="updateTime != null" >
+      now(),
+    </if>
   </trim>
 </insert>
 <update id="updateByPrimaryKeySelective" parameterType="com.mmall.pojo.MusicSong">
   update music_song
   <set>
-    <if test="type != null">
-      type = #{type,jdbcType=VARCHAR},
+    <if test="songType != null">
+      song_type = #{songType,jdbcType=VARCHAR},
     </if>
     <if test="songExtraId != null">
       song_extra_id = #{songExtraId,jdbcType=VARCHAR},
@@ -216,8 +230,8 @@
     <if test="songLink != null">
       song_link = #{songLink,jdbcType=VARCHAR},
     </if>
-    <if test="length != null">
-      length = #{length,jdbcType=VARCHAR},
+    <if test="songLength != null">
+      song_length = #{songLength,jdbcType=VARCHAR},
     </if>
     <if test="bitRate != null">
       bit_rate = #{bitRate,jdbcType=VARCHAR},
@@ -249,12 +263,18 @@
     <if test="mvLdUrl != null">
       mv_ld_url = #{mvLdUrl,jdbcType=VARCHAR},
     </if>
+    <if test="createTime != null" >
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="updateTime != null" >
+      update_time = now(),
+    </if>
   </set>
   where id = #{id,jdbcType=BIGINT}
 </update>
 <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.MusicSong">
   update music_song
-  set type = #{type,jdbcType=VARCHAR},
+  set song_type = #{songType,jdbcType=VARCHAR},
   song_extra_id = #{songExtraId,jdbcType=VARCHAR},
   song_name = #{songName,jdbcType=VARCHAR},
   artist_id = #{artistId,jdbcType=VARCHAR},
@@ -262,7 +282,7 @@
   album_id = #{albumId,jdbcType=VARCHAR},
   album_name = #{albumName,jdbcType=VARCHAR},
   song_link = #{songLink,jdbcType=VARCHAR},
-  length = #{length,jdbcType=VARCHAR},
+  song_length = #{songLength,jdbcType=VARCHAR},
   bit_rate = #{bitRate,jdbcType=VARCHAR},
   flac_url = #{flacUrl,jdbcType=VARCHAR},
   sq_url = #{sqUrl,jdbcType=VARCHAR},
@@ -272,7 +292,8 @@
   lrc_url = #{lrcUrl,jdbcType=VARCHAR},
   mv_id = #{mvId,jdbcType=VARCHAR},
   mv_hd_url = #{mvHdUrl,jdbcType=VARCHAR},
-  mv_ld_url = #{mvLdUrl,jdbcType=VARCHAR}
+  mv_ld_url = #{mvLdUrl,jdbcType=VARCHAR},
+  update_time = now()
   where id = #{id,jdbcType=BIGINT}
 </update>
 </mapper>
