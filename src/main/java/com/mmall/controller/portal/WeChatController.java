@@ -1,5 +1,6 @@
 package com.mmall.controller.portal;
 
+import com.mmall.pojo.ScheduleJob;
 import com.qq.weixin.mp.aes.AesException;
 import com.qq.weixin.mp.aes.WXBizMsgCrypt;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLDecoder;
 import java.nio.charset.Charset;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/8/3.
@@ -32,6 +34,11 @@ public class WeChatController {
     private static   String token = "chenruochen15172386";
     //重复通知过滤
     private static ExpireKey expireKey = new DefaultExpireKey();
+
+    @RequestMapping("alipay")
+    public String taskList(HttpServletRequest request) {
+        return "alipay";
+    }
 
     @RequestMapping(value = "/wechat.do", method = RequestMethod.GET)
     public @ResponseBody String  checkValite(String signature,String  timestamp, String nonce, String echostr){
