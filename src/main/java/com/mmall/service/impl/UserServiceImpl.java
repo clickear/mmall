@@ -1,14 +1,22 @@
 package com.mmall.service.impl;
 
 import com.mmall.common.Const;
+import com.mmall.common.ICache;
 import com.mmall.common.ServerResponse;
 import com.mmall.common.TokenCache;
 import com.mmall.dao.UserMapper;
+import com.mmall.pojo.FileInfo;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserAlertService;
 import com.mmall.service.IUserService;
 import com.mmall.util.MD5Util;
+import com.rabbitmq.http.client.domain.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.data.redis.cache.RedisCache;
+import org.springframework.data.redis.cache.RedisCacheElement;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -177,8 +185,8 @@ public class UserServiceImpl implements IUserService {
     }
 
 
-
     public ServerResponse<User> getInformation(Integer userId){
+    System.out.printf("进入查询");
         User user = userMapper.selectByPrimaryKey(userId);
         if(user == null){
             return ServerResponse.createByErrorMessage("找不到当前用户");
@@ -189,6 +197,24 @@ public class UserServiceImpl implements IUserService {
     }
 
 
+    @Autowired
+    private ICache iCache;
+
+    public static void main(String[] args) {
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        UserServiceImpl userServiceImpl = ctx.getBean(UserServiceImpl.class);
+
+        ServerResponse<User> result1 =  userServiceImpl.getInformation(1);
+
+        userServiceImpl.iCache.put("teshu1",result1);
+
+        ServerResponse<User> object = userServiceImpl.iCache.get("teshu1",ServerResponse.class);
+
+        System.out.printf("");
+
+
+        System.out.printf(object.getData().getEmail()+"");
+    }
 
 
     //backend

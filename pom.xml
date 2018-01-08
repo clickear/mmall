@@ -13,10 +13,61 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 
-    <org.springframework.version>4.3.11.RELEASE</org.springframework.version>
+    <jackson>2.9.1</jackson>
+    <org.springframework.version>5.0.0.RELEASE</org.springframework.version>
     <org.mybatis.version>3.4.1</org.mybatis.version>
     <org.mybatis.spring.version>1.3.0</org.mybatis.spring.version>
   </properties>
+  <profiles>
+    <profile>
+      <id>default</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <repositories>
+        <repository>
+          <id>spring-milestone</id>
+          <name>Spring Maven Milestone Repository</name>
+          <url>http://repo.spring.io/libs-milestone</url>
+        </repository>
+        <repository>
+          <id>com.springsource.repository.maven.snapshot</id>
+          <url>http://maven.springframework.org/snapshot/</url>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+        <repository>
+          <id>spring-libs-snapshot</id>
+          <name>Spring Snapshot Repository</name>
+          <url>http://repo.spring.io/libs-snapshot</url>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>com.springsource.repository.bundles.release</id>
+          <url>http://repository.springsource.com/maven/bundles/release</url>
+        </pluginRepository>
+        <pluginRepository>
+          <id>central</id>
+          <name>Central Repository</name>
+          <url>http://repo.maven.apache.org/maven2</url>
+          <layout>default</layout>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <releases>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+
+
 
   <dependencies>
 
@@ -88,18 +139,40 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
-      <version>2.8.9</version>
+      <version>${jackson}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-annotations</artifactId>
-      <version>2.8.9</version>
+      <version>${jackson}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>2.8.9</version>
+      <version>${jackson}</version>
     </dependency>
+
+  <dependency>
+    <groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-smile</artifactId>
+    <version>${jackson}</version>
+  </dependency>
+  <dependency>
+    <groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-yaml</artifactId>
+    <version>${jackson}</version>
+    <exclusions>
+      <exclusion>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+      </exclusion>
+    </exclusions>
+  </dependency>
+  <dependency>
+    <groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-cbor</artifactId>
+    <version>${jackson}</version>
+  </dependency>
 
 
     <dependency>
@@ -156,12 +229,26 @@
       <version>4.12</version>
       <!--<scope>test</scope>-->
     </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>1.9.5</version>
+      <scope>test</scope>
+    </dependency>
 
     <dependency>
-      <groupId>joda-time</groupId>
-      <artifactId>joda-time</artifactId>
-      <version>2.3</version>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-all</artifactId>
+      <version>1.1</version>
+      <scope>test</scope>
     </dependency>
+
+
+    <!--<dependency>-->
+      <!--<groupId>joda-time</groupId>-->
+      <!--<artifactId>joda-time</artifactId>-->
+      <!--<version>2.3</version>-->
+    <!--</dependency>-->
 
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -311,11 +398,23 @@
       <version>2.9.0</version>
     </dependency>
 
+
+    <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-elasticsearch -->
+    <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-elasticsearch -->
     <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-elasticsearch</artifactId>
+      <version>3.0.0.RELEASE</version>
+    </dependency>
+
+
+
+      <dependency>
       <groupId>com.github.liyiorg</groupId>
       <artifactId>weixin-popular</artifactId>
       <version>2.8.6</version>
     </dependency>
+
 
     <!-- har -->
     <dependency>
