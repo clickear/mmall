@@ -96,7 +96,7 @@ running ssh on testtest
                 // 查看简单反馈
                  var domain = up.getOption('domain');
                  var res = JSON.parse(info.response);
-                 var sourceLink = do main +"/"+ res.key; //获取上传成功后的文件的Url
+                 var sourceLink = domain +"/"+ res.key; //获取上传成功后的文件的Url
 
                 console.log(sourceLink);
 
