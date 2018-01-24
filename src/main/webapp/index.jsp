@@ -6,7 +6,7 @@
     <script src="http://cdn.staticfile.org/plupload/2.1.9/moxie.js" type="application/javascript"></script>
     <script src="http://cdn.staticfile.org/plupload/2.1.9/plupload.dev.js" type="application/javascript"></script>
     <script src="http://cdn.staticfile.org/plupload/2.1.9/i18n/zh_CN.js" type="application/javascript"></script>
-    <script src="/script/qiniu.js"  type="application/javascript"></script>
+    <script src="http://ogy6ikeii.bkt.clouddn.com/qiniu.js"  type="application/javascript"></script>
 </head>
 
 <body>
